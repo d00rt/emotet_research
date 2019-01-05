@@ -18,7 +18,7 @@ import os
 
 __author__ = "d00rt - @D00RT_RM"
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 __maintainer__ = "d00rt - @D00RT_RM"
 __email__ = "d00rt.fake@gmail.com"
 __status__ = "Testing"
@@ -407,6 +407,10 @@ class EmotetDumpFileParser():
                     hook_rva = struct.unpack("=L", string[2][7: 7 + 4])[0]
                     hook_off = self.PE_LAYER_2.from_va_to_offset(hook_rva)
 
+                if string[1] == '$hooks3':
+                    hook_rva = struct.unpack("=L", string[2][8: 8 + 4])[0]
+                    hook_off = self.PE_LAYER_2.from_va_to_offset(hook_rva)
+
                 elif string[1] == '$size':
                     array_size = struct.unpack("=L", string[2][10: 10 + 4])[0]
 
@@ -432,7 +436,6 @@ class EmotetDumpFileParser():
         rules_hooks = yara.compile(FILE_YARA_HOOKS)
 
         match = rules_hooks.match(data=self.PE_LAYER_2.DATA)
-
         if match:
             return self._unhook(match)
             

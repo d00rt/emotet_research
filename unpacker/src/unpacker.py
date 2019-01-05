@@ -150,7 +150,7 @@ class deEmotet():
         for file in glob.glob(os.path.join(DIR_DUMPS, '*')):
             m_code = rules_code.match(filepath=file)
             m_rsa = rules_rsa.match(filepath=file)
-
+ 
             if m_code or m_rsa:
                 matches = True
                 self.log("[+] Yara match: ")
@@ -182,6 +182,12 @@ class deEmotet():
         pat = (c_ubyte * 15)(0x8B, 0x45, 0xCC, 0x83, 0xC0, 0x01, 0x3D, 0xFF, 0x00, 0x00, 0x00, 0x89, 0x45, 0xCC, 0xCC)
 
         loc = TE.Find(self.layer2_base_addr, self.SizeOfImg, byref(pat), len(pat), byref(self.wild))
+        
+        aux_loc = loc
+        
+        while aux_loc:
+            loc = aux_loc
+            aux_loc = TE.Find(loc + 1, self.SizeOfImg, byref(pat), len(pat), byref(self.wild))
 
         if not loc:
             self.log("[!] Could not locate decrypt function pattern.")
