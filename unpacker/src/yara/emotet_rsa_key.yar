@@ -94,6 +94,54 @@ rule EmotetRSAKey4
 		$rsa_key
 }
 
+rule EmotetRSAKey5
+{
+    meta:
+        author       = "d00rt - @D00RT_RM"
+
+        version      = "1.0.0"
+        maintainer   = "d00rt - @D00RT_RM"
+        email        = "d00rt.fake@gmail.com"
+        status       = "Testing"
+
+	strings:
+		$rsa_key = {
+			30 68 02 61 00 BF 4A 44 A5 AA 72 57 78 D3 16 D4
+            67 A8 51 87 E7 CF 36 48 09 7B B2 BE D3 2D 6B 47
+            45 05 A9 CD 92 06 69 F2 A1 1F F6 0A D7 7E F0 C4
+            6F 53 CC EB 8B 67 8D 56 45 41 C4 25 07 D4 2B 61
+            7F 70 04 81 1A 98 DA 41 AF 6B C8 09 59 CA A5 B3
+            78 FB 47 3B 59 CE A1 68 2F EC 0C F4 33 67 CF F3
+            96 BA 2C 8F 01 02 03 01 00 01
+		}
+	condition:
+		$rsa_key
+}
+
+rule EmotetRSAKey6
+{
+    meta:
+        author       = "d00rt - @D00RT_RM"
+
+        version      = "1.0.0"
+        maintainer   = "d00rt - @D00RT_RM"
+        email        = "d00rt.fake@gmail.com"
+        status       = "Testing"
+
+	strings:
+		$rsa_key = {
+			30 68 02 61 00 C3 CB 81 C3 B4 45 07 49 83 F2 D3
+            82 29 2E E7 B9 C7 E0 A7 0B C0 70 B1 4B 49 5B CA
+            73 94 84 78 4A 8D 39 E6 10 DA CC 03 68 9D 51 B2
+            BA 84 8D 09 45 9B 62 8B DA 09 4A 56 F7 7B 93 59
+            88 22 BE 42 BF CD 07 6B BB 64 D4 5C 84 6F 3B 6A
+            26 E6 D2 77 52 F7 12 83 45 77 26 5B 06 90 90 5D
+            0F 16 E3 87 A7 02 03 01 00 01
+		}
+	condition:
+		$rsa_key
+}
+
 rule EmotetRSAKeyOldVersion1
 {
     meta:
